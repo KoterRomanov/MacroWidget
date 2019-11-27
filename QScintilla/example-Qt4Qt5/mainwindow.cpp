@@ -72,7 +72,6 @@ MainWindow::MainWindow()
     textEdit->setLexer(text_lexer);
 
     //设置括号自动补全
-
     QsciAPIs *apis = new QsciAPIs(text_lexer);
     apis->add(QString("int"));
     apis->add(QString("return"));
