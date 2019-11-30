@@ -25,16 +25,6 @@
    <property name="title">
     <string>已编译成功</string>
    </property>
-   <widget class="QListView" name="listView">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>20</y>
-      <width>331</width>
-      <height>301</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
@@ -74,6 +64,16 @@
      <string>*I：当HMI启动时即执行一次</string>
     </property>
    </widget>
+   <widget class="QListWidget" name="complie_macro_listwidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>331</width>
+      <height>300</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_2">
    <property name="geometry">
@@ -87,7 +87,7 @@
    <property name="title">
     <string>未编译成功</string>
    </property>
-   <widget class="QListView" name="listView_2">
+   <widget class="QListWidget" name="uncomplie_macro_listwidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -98,7 +98,7 @@
     </property>
    </widget>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="add_macro_button">
    <property name="geometry">
     <rect>
      <x>365</x>
@@ -111,7 +111,7 @@
     <string>新增...</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="delete_macro_button">
    <property name="geometry">
     <rect>
      <x>365</x>
@@ -124,7 +124,7 @@
     <string>删除</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_3">
+  <widget class="QPushButton" name="edit_macro_button">
    <property name="geometry">
     <rect>
      <x>365</x>
@@ -137,7 +137,7 @@
     <string>编辑</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_4">
+  <widget class="QPushButton" name="copy_macro_button">
    <property name="geometry">
     <rect>
      <x>365</x>
@@ -150,7 +150,7 @@
     <string>复制</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_5">
+  <widget class="QPushButton" name="paste_macro_button">
    <property name="geometry">
     <rect>
      <x>365</x>
@@ -163,7 +163,7 @@
     <string>粘贴</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_6">
+  <widget class="QPushButton" name="export_macro_button">
    <property name="geometry">
     <rect>
      <x>365</x>
@@ -176,7 +176,7 @@
     <string>导出...</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_7">
+  <widget class="QPushButton" name="import_macro_button">
    <property name="geometry">
     <rect>
      <x>365</x>
@@ -189,7 +189,7 @@
     <string>导入...</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_8">
+  <widget class="QPushButton" name="close">
    <property name="geometry">
     <rect>
      <x>365</x>

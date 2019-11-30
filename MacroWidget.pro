@@ -26,14 +26,23 @@ CONFIG += c++11
 CONFIG += qscintilla2
 
 SOURCES += \
+        macro.cpp \
+        macro_editor.cpp \
+        macro_enable_condition.cpp \
+        macro_manage.cpp \
         main.cpp \
         dialog.cpp
 
 HEADERS += \
-        dialog.h
+        dialog.h \
+        macro.h \
+        macro_editor.h \
+        macro_enable_condition.h \
+        macro_manage.h
 
 FORMS += \
-        dialog.ui
+        dialog.ui \
+        macroeditor.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
