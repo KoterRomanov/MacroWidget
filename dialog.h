@@ -2,9 +2,11 @@
 #define DIALOG_H
 
 #include <QDialog>
+#include <QMap>
 
 class Macro;
 class MacroManage;
+class QListWidgetItem;
 namespace Ui {
 class Dialog;
 }
@@ -22,8 +24,14 @@ private:
     /* 初始化宏指令管理器 */
     void init_macro_manage();
 
+    /* 初始化宏指令列表焦点问题 */
+    void init_list_focus();
+
     /* 更新宏指令列表 */
     void macro_list_update();
+
+    /* 输出所有宏指令对象信息(调试) */
+    void macro_output();
 
 private Q_SLOTS:
 
@@ -54,11 +62,25 @@ private Q_SLOTS:
     /* 保存宏指令 */
     void slot_save_macro(Macro *macro);
 
+    /* 宏指令列表焦点切换 */
+    void slot_list_focus_changed(QListWidgetItem*);
+
 private:
     Ui::Dialog *ui;
 
     /* 宏指令管理器 */
     MacroManage *m_macro_manage;
+
+    QListWidgetItem *m_selectd_item;
+
+    /* 拷贝宏指令对象的编号 */
+    int m_macro_copy_index;
+
+    /* 编译成功 Item 列表 */
+    QMap< uint, QListWidgetItem* > m_complie_successed_map;
+
+    /* 编译失败 Item 列表 */
+    QMap< uint, QListWidgetItem* > m_complie_unsuccessed_map;
 };
 
 #endif // DIALOG_H

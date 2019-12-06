@@ -11,6 +11,9 @@ class MacroExecuteCondition : public QObject
     Q_OBJECT
 public:
     explicit MacroExecuteCondition(QObject *parent = nullptr);
+    MacroExecuteCondition(const MacroExecuteCondition &obj);
+
+    MacroExecuteCondition& operator=(const MacroExecuteCondition &obj);
 
     enum Condition
     {

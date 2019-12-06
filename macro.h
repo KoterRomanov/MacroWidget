@@ -3,6 +3,8 @@
 
 #include <QObject>
 
+#include "macro_enable_condition.h"
+
 /*
  * 宏指令对象类
  */
@@ -13,25 +15,46 @@ class Macro : public QObject
     Q_OBJECT
 
 public:
-    explicit Macro(uint macro_index, QObject *parent = nullptr);
-    ~Macro();
-
-    /* 宏指令名称 */
-    QString macro_name();
-
-    /* 宏指令编号 */
-    uint macro_index();
-
-    void show();
-
     enum ComplieStatu
     {
+        /* 未编译 */
+        Complie_Not_Done,
+
         /* 编译成功 */
         Complie_Successed,
 
         /* 编译未完成 */
         Complie_Unsuccessed
     };
+
+public:
+    explicit Macro(uint macro_index, QObject *parent = nullptr);
+    ~Macro();
+
+    /* 宏指令编号 */
+    uint macro_index();
+
+    /* 宏指令名称 */
+    QString macro_name();
+
+    uint macro_complie_statu();
+
+    /* 显示宏指令编辑器 */
+    void show();
+
+    /* 执行宏指令 */
+    QString execute_macro();
+
+    /* 更新宏指令属性值 */
+    void macro_data_update();
+
+    /* 宏指令编号是否变化 */
+    bool macro_index_changed();
+
+    /* 复制宏指令对象 */
+    Macro* copy(uint macro_index);
+
+    void macro_output();
 
 Q_SIGNALS:
 
@@ -41,10 +64,13 @@ Q_SIGNALS:
     /* 删除宏指令信号 */
     void delete_macro_signal(Macro*);
 
+    /* 编译错误信号 */
+    void complie_error_signal(QByteArray);
+
 private Q_SLOTS:
 
     /* 保存宏指令 */
-    void slot_save_macro();
+    void slot_save_macro(QString);
 
 private:
 
@@ -54,10 +80,16 @@ private:
     /* 初始化宏指令编辑器 */
     void init_macro_editor();
 
+    /* 编译宏指令 */
+    bool macro_complie(const QString &source);
+
 private:
 
     /* 宏指令编号 */
     uint m_macro_index;
+
+    /* 新宏指令编号 */
+    uint m_macro_index_new;
 
     /* 宏指令名称 */
     QString m_macro_name;
@@ -72,7 +104,7 @@ private:
     bool m_enable;
 
     /* 宏指令启用执行条件 */
-    MacroExecuteCondition *m_macro_execute_condition;
+    MacroExecuteCondition m_macro_execute_condition;
 
     /* 宏指令是否周期执行 */
     bool m_enable_with_cycle;

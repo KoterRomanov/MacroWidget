@@ -82,3 +82,7 @@ release/moc_macro_manage.cpp
 release/moc_macro_manage.o
 release/moc_macroeditor.cpp
 release/moc_macroeditor.o
+temp.o
+temp.dll
+tcc/temp.o
+tcc/temp.dll
