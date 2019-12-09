@@ -2,6 +2,7 @@
 #define MACROEDITOR_H
 
 #include <QDialog>
+#include <Qsci/qscilexercpp.h>
 
 #include "macro_enable_condition.h"
 
@@ -71,6 +72,15 @@ private:
 
     /* 编辑器 */
     QsciScintilla *macro_editor;
+
+};
+
+class QscilexerCppKeyAttach : public QsciLexerCPP
+{
+    Q_OBJECT
+
+public:
+    virtual const char *keywords(int set) const override;
 
 };
 

@@ -12,7 +12,7 @@ Macro::Macro(uint macro_index, QObject *parent)
      m_macro_index(macro_index),
      m_macro_index_new(macro_index),
      m_macro_name("macro_"+QString::number(m_macro_index)),
-     m_macro_content(QString()),
+     m_macro_content(QString("macro_command main()\r\n\r\nend macro_command")),
      m_macro_complie_statu(Complie_Not_Done),
      m_enable(false),
      m_enable_with_cycle(false),
@@ -63,9 +63,14 @@ bool Macro::macro_complie(const QString &source)
     if ( !file.open(QIODevice::WriteOnly | QIODevice::Text) )
         return false;
 
+    //宏指令语言转换为 C 语言
+    QString source_copy = source;
+    source_copy.replace( "macro_command main()", "int main()\r\n{");
+    source_copy.replace("end macro_command", "}");
+
 
     QTextStream out(&file);
-    out << source;
+    out << source_copy;
 
     file.close();
 

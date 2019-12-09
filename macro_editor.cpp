@@ -106,8 +106,9 @@ void MacroEditor::init_macro_editor()
     macro_editor->setMarginWidth(0,35);//设置页边宽度
 
     //增加关键字定制颜色 (C++语言)
-    QsciLexerCPP * text_lexer = new QsciLexerCPP;
+    QscilexerCppKeyAttach * text_lexer = new QscilexerCppKeyAttach;
     text_lexer->setColor(QColor(Qt::green),QsciLexerCPP::CommentLine);    //设置自带的注释行为绿色
+    text_lexer->setColor(QColor(Qt::blue), QsciLexerCPP::KeywordSet2);//设置自定义关键字颜色为蓝色
     macro_editor->setLexer(text_lexer);
 
     //设置括号自动补全
@@ -116,10 +117,13 @@ void MacroEditor::init_macro_editor()
     apis->add(QString("return"));
     apis->add(QString("main"));
     apis->add(QString("#include"));
+    apis->add(QString("macro_command"));
+    apis->add(QString("end"));
     apis->prepare();
     macro_editor->setAutoCompletionSource(QsciScintilla::AcsAll);   //自动补全所以地方出现的
     macro_editor->setAutoCompletionCaseSensitivity(true);   //设置自动补全大小写敏感
     macro_editor->setAutoCompletionThreshold(1);    //输入一个字符就会出现自动补全的提示
+    macro_editor->setBraceMatching(QsciScintilla::SloppyBraceMatch);//设置括号匹配
 
     macro_editor->setAutoIndent(true);//换行自动缩进
 
@@ -139,4 +143,19 @@ void MacroEditor::on_macro_save_complie_button_clicked()
 void MacroEditor::on_macro_edit_close_button_clicked()
 {
     close();
+}
+
+const char* QscilexerCppKeyAttach::keywords(int set) const
+{
+   if ( 1 == set || 3 == set )
+   {
+       return QsciLexerCPP::keywords(set);
+   }
+
+   if ( 2 == set )
+   {
+        return "end macro_command";
+   }
+
+   return nullptr;
 }
